@@ -4,7 +4,7 @@ Vagrant.configure(2) do |config|
 #  config.vm.network "forwarded_port", guest: 80, host: 8080
 #  config.vm.network "private_network", ip: "192.168.33.10"
 #  config.vm.network "public_network"
-#  config.vm.synced_folder "../", "/vagrant_data"
+  config.vm.synced_folder "../third_party", "/third_party"
 
   config.vm.provider :virtualbox do |vb|
 #    vb.gui = true
@@ -18,14 +18,15 @@ Vagrant.configure(2) do |config|
     ansible.playbook = "./ansible/playbook.yml"
   end
 
-#  config.vm.provision "shell", inline: <<-SHELL
-#    cd /vagrant/third_party/rabbitmq-c
-#    mkdir build && cd build
-#    cmake ..
-#     sudo cmake --build . --target install
-#    cd /vagrant/third_party/amqpcpp
-#     make
-#    clang++ -std=c++11 BlackPerformer.cpp -I/usr/include/ -ltbb -lpthread -lboost_system
-#  SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    cd /third_party/rabbitmq-c
+    rm -f build
+    mkdir build 
+    cd build
+    cmake ..
+    sudo cmake --build . --target install
+    cd /third_party/amqpcpp
+    make
+  SHELL
 
 end
