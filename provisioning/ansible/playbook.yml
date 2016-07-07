@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  tasks:
+   - name: update cache
+     apt: update_cache=yes
+
+   - name: Installs git
+     apt: pkg=git state=installed
+
+   - name: Install list of packages
+     apt: name={{item}} state=installed
+     with_items:
+       - git
+       - clang
+       - g++
+       - cmake
+       - libssl-dev
