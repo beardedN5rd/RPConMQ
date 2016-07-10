@@ -1,0 +1,40 @@
+project RPConMQcpp
+	:
+		requirements
+		<cxxflags>-std=c++1y
+		<include>./include
+		<include>./third_party/msgpack-c/include
+		<library-path>build
+
+
+	;
+	
+lib rpconmq_client 
+	:
+		[ glob lib/*Client*.cpp ]
+	:
+		<include>./include
+	;
+		
+lib rpconmq_server 
+	:
+		[ glob lib/*Server*.cpp ]
+	:
+		<include>./include
+	;
+	
+exe TestClient
+	:
+		[ glob example/TestClient.cpp ]
+		rpconmq_client
+	:
+		<include>./include
+	;
+		
+exe TestServer
+	:
+		[ glob example/TestServer.cpp ]
+		rpconmq_server
+	:
+		<include>./include
+	;
