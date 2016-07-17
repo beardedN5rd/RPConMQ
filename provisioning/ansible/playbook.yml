@@ -19,3 +19,4 @@
        - g++
        - cmake
        - libssl-dev
+       - libboost1.55-tools-dev

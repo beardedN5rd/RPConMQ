@@ -4,7 +4,7 @@ using namespace RPConMQ;
 
 int main ()
 {
-	 auto client = IClient::create ();
+	 auto client = IClient::create ("foo");
 	 client->request("Snafu");
 	 return EXIT_SUCCESS;
 }

@@ -13,7 +13,7 @@ public:
 	virtual ~IClient ();
 	virtual Message request (const Message& message) = 0;
 
-	static Client create ();
+	static Client create (const std::string& init_data);
 };
 
 }

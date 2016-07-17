@@ -1,0 +1,47 @@
+project RPConMQcpp
+	:
+		requirements
+		<cxxflags>-std=c++1y
+		<cxxflags>-fPIC
+		<include>./lib/cpp/include
+		<include>./third_party/amqpcpp/include
+		<library-path>bin	
+	;
+	
+lib amqpcpp : : <name>amqpcpp <search>./third_party/amqpcpp/ : : <include>./third_party/amqpcpp/include ;
+lib rabbitmq : : <name>rabbitmq <search>./third_party/rabbitmq-c/build/librabbitmq/ : : <include>./third_party/rabbitmq-c ;
+	
+lib rpconmq_client 
+	:
+		[ glob ./lib/cpp/lib/*Client*.cpp ]
+		amqpcpp
+
+	:
+		<include>./lib/cpp/include
+	;
+		
+lib rpconmq_server 
+	:
+		[ glob ./lib/cpp/lib/*Server*.cpp ]
+		amqpcpp
+	:
+		<include>./lib/cpp/include
+	;
+	
+exe TestClient
+	:
+		[ glob ./lib/cpp/example/TestClient.cpp ]
+		rpconmq_client
+		rabbitmq
+	:
+		<include>./lib/cpp/include
+	;
+		
+exe TestServer
+	:
+		[ glob ./lib/cpp/example/TestServer.cpp ]
+		rpconmq_server
+		rabbitmq
+	:
+		<include>./lib/cpp/include
+	;

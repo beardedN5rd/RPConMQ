@@ -12,8 +12,7 @@ public:
 //	IServer() = delete;
 	virtual ~IServer();
 
-	using CallBack = std::function<Message(const Message&)>;
-	static Server create ();
+	static Server create (const std::string& init_data);
 };
 
 }

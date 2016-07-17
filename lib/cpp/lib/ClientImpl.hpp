@@ -1,16 +1,16 @@
 #pragma once
 #include <RPConMQ/Client.hpp>
+#include "ReadEndpoint.hpp"
+#include "SendEndpoint.hpp"
 
 namespace RPConMQ {
 
-class ClientImpl :
-		public virtual IClient
+class ClientImpl
+:	public virtual IClient
 {
 public:
-	ClientImpl ()
-	{
-
-	}
+	ClientImpl (const std::string& init_data)
+	{}
 
 	virtual ~ClientImpl ()
 	{}
@@ -26,7 +26,7 @@ public:
 	}
 
 private:
-	std::string create_unique_queue_name()
+	std::string create_unique_queue_name ()
 	{
 		return "unique";
 	}
