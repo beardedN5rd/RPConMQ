@@ -24,7 +24,7 @@ private:
 	}
 public:
 	ReadEndpoint (	AbstractEndpoint& 	abstract,
-					const std::string& 	queue_name)
+					const std::string& 	queue_name)//callback
 	:	_exchange(abstract.createExchange())
 	,	_queue(abstract.createQueue(queue_name))
 	{
