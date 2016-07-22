@@ -17,5 +17,10 @@
        - clang
        - g++
        - cmake
+       - doxygen
        - libssl-dev
-       - libboost1.55-tools-dev
+       - ruby-dev
+       - valgrind
+       - libboost-tools-dev
+       - libboost-all-dev
+

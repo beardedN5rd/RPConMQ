@@ -20,14 +20,13 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    cd /third_party/rabbitmq-c
+    cd /third_party/qpid-cpp
     rm -f build
     mkdir build 
     cd build
     cmake ..
-    sudo cmake --build . --target install
-    cd /third_party/amqpcpp
-    make
+    make test
+    make install
   SHELL
 
 end
