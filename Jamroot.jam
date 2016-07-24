@@ -8,14 +8,14 @@ project RPConMQcpp
 		<library-path>bin	
 	;
 	
-lib amqpcpp : : <name>amqpcpp <search>./third_party/amqpcpp/ : : <include>./third_party/amqpcpp/include ;
-lib rabbitmq : : <name>rabbitmq <search>./third_party/rabbitmq-c/build/librabbitmq/ : : <include>./third_party/rabbitmq-c ;
+lib libqpidclient : : <name>libqpidclient <search>/usr/local/lib/ : : <include>/usr/local/include ;
+lib libqpidcommon : : <name>libqpidcommon <search>/usr/local/lib/ : : <include>/usr/local/include ;
+lib libqpidmessaging : : <name>libqpidmessaging <search>/usr/local/lib/ : : <include>/usr/local/include ;
+lib libqpidtypes : : <name>libqpidtypes <search>/usr/local/lib/ : : <include>/usr/local/include ;
 	
 lib rpconmq_client 
 	:
 		[ glob ./lib/cpp/lib/*Client*.cpp ]
-		amqpcpp
-
 	:
 		<include>./lib/cpp/include
 	;
@@ -23,7 +23,6 @@ lib rpconmq_client
 lib rpconmq_server 
 	:
 		[ glob ./lib/cpp/lib/*Server*.cpp ]
-		amqpcpp
 	:
 		<include>./lib/cpp/include
 	;
@@ -32,7 +31,6 @@ exe TestClient
 	:
 		[ glob ./lib/cpp/example/TestClient.cpp ]
 		rpconmq_client
-		rabbitmq
 	:
 		<include>./lib/cpp/include
 	;
@@ -41,7 +39,6 @@ exe TestServer
 	:
 		[ glob ./lib/cpp/example/TestServer.cpp ]
 		rpconmq_server
-		rabbitmq
 	:
 		<include>./lib/cpp/include
 	;

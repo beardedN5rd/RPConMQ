@@ -17,10 +17,15 @@
        - clang
        - g++
        - cmake
+       - swig
        - doxygen
-       - libssl-dev
-       - ruby-dev
+       - pkg-config
        - valgrind
        - libboost-tools-dev
        - libboost-all-dev
-
+       - libssl-dev
+       - libsasl2-dev
+       - libuuid1
+       - libxerces-c-dev
+       - ruby-dev
+       - uuid-dev

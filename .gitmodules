@@ -2,3 +2,7 @@
 	path = third_party/qpid-cpp
 	url = https://github.com/engineer-legion/qpid-cpp.git
 	branch = master
+[submodule "third_party/qpid-proton"]
+	path = third_party/qpid-proton
+	url = https://github.com/engineer-legion/qpid-proton.git
+	branch = master
