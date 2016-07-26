@@ -1,7 +1,6 @@
 #pragma once
 #include <RPConMQ/Server.hpp>
-#include "ReadEndpoint.hpp"
-#include "SendEndpoint.hpp"
+#include "AbstractEndpoint.hpp"
 
 namespace RPConMQ {
 
@@ -9,16 +8,22 @@ class ServerImpl
 :	public virtual IServer
 {
 private:
-	AbstractEndpoint	_endpoint;
-	ReadEndpoint		_readEP;
+	AbstractEndpoint			_abstract;
+	qpid::messaging::Receiver	_receiver;
 public:
-	ServerImpl (const std::string& init_data)
-	:	_endpoint(init_data)
-	,	_readEP(_endpoint,"foo")
+	ServerImpl (const std::string& init_data,
+				const std::string& service_queue)
+	:	_abstract(init_data)
+	,	_receiver(_abstract.session().createReceiver(service_queue+"; {create: always}"))
 	{}
 
 	virtual ~ServerImpl ()
 	{}
+
+	void run()
+	{
+
+	}
 };
 
 }

@@ -8,7 +8,7 @@ IClient::~IClient()
 
 Client IClient::create(const std::string& init_data)
 {
-	return Client(new ClientImpl(init_data));
+	return Client(new ClientImpl(init_data,"foo"));
 }
 
 }

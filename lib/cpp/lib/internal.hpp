@@ -1,11 +1,9 @@
 #pragma once
 #include <iostream>
 #include <memory>
-#include <AMQPcpp.h>
 
-namespace RPConMQ {
-
-using ExchangeType = std::shared_ptr<AMQPExchange>;
-using QueueType = std::shared_ptr<AMQPQueue>;
-
-}
+#include <qpid/messaging/Connection.h>
+#include <qpid/messaging/Message.h>
+#include <qpid/messaging/Receiver.h>
+#include <qpid/messaging/Sender.h>
+#include <qpid/messaging/Session.h>
