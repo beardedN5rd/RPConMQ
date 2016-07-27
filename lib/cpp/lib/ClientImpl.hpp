@@ -43,8 +43,7 @@ public:
 		_session.acknowledge(const_cast<qpid::messaging::Message&>(response));
 
 		if ( id != response.getCorrelationId())
-			std::cout << "id mismatch" << std::endl;
-
+			throw ConnectionException("id mismatch");
 		return response.getContentObject();
 	}
 };
