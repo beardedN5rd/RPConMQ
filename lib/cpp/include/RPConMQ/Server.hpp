@@ -11,6 +11,7 @@ class IServer
 public:
 //	IServer() = delete;
 	virtual ~IServer();
+	virtual void run() = 0;
 
 	static Server create (const std::string& init_data);
 };
