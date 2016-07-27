@@ -14,8 +14,8 @@ private:
 	qpid::messaging::Sender		_sender;
 	qpid::messaging::Receiver	_receiver;
 public:
-	ClientImpl (	const std::string& init_data,
-			const std::string& service_queue)
+	ClientImpl (const std::string& init_data,
+				const std::string& service_queue)
 	:	AbstractEndpoint(init_data)
 	,	_session(createSession())
 	,	_sender(_session.createSender(service_queue))
@@ -25,7 +25,7 @@ public:
 	virtual ~ClientImpl ()
 	{}
 
-	virtual Message request (const Message& message)
+	virtual Response request (const Request& message)
 	{
 		const auto responseQueue = _receiver.getAddress();
 		const auto id = create_correlation_id();
@@ -36,14 +36,11 @@ public:
 
 		_sender.send(request);
 		const auto response = _receiver.fetch();
-		std::cout	<< request.getContentObject()
-				<< " -> "
-				<< response.getContentObject()
-				<< std::endl;
+
 		_session.acknowledge(const_cast<qpid::messaging::Message&>(response));
 
 		if ( id != response.getCorrelationId())
-			return ""; //id mismatch
+			std::cout << "id mismatch" << std::endl;
 
 		return response.getContentObject();
 	}

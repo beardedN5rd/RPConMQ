@@ -8,10 +8,11 @@ using Client = std::shared_ptr<IClient>;
 
 class IClient
 {
+protected:
+	IClient ();
 public:
-//	IClient () = delete;
 	virtual ~IClient ();
-	virtual Message request (const Message& message) = 0;
+	virtual Response request (const Request& request) = 0;
 
 	static Client create (	const std::string& init_data,
 							const std::string& service_queue);

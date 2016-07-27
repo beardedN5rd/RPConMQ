@@ -3,7 +3,10 @@
 
 namespace RPConMQ {
 
-IClient::~IClient()
+IClient::IClient ()
+{}
+
+IClient::~IClient ()
 {}
 
 Client IClient::create(	const std::string& init_data,

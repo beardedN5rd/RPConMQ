@@ -9,6 +9,7 @@ class ServerImpl
 ,	public AbstractEndpoint
 {
 private:
+	CallBack					_callback;
 	qpid::messaging::Session	_session;
 	qpid::messaging::Sender		_sender;
 	qpid::messaging::Receiver	_receiver;
@@ -36,10 +37,10 @@ private:
 		qpid::types::Variant requestObj = request.getContentObject();
 		if (requestObj.getType() == qpid::types::VAR_STRING)
 		{
-			std::string s = requestObj;
-			std::transform(s.begin(), s.end(), s.begin(), toupper);
+			std::string s = _callback(requestObj);
 			qpid::types::Variant responseObj(s);
 			responseObj.setEncoding( requestObj.getEncoding() );
+			response.setCorrelationId(request.getCorrelationId());
 			response.setContentObject( responseObj );
 		}
 		else
@@ -51,18 +52,20 @@ private:
 			response.setContentObject( requestObj );
 		}
 		sender.send(response);
-		std::cout	<< request.getCorrelationId() << std::endl;
 		std::cout	<< "Processed request: "
 					<< request.getContentObject()
 					<< " -> "
-					<< response.getContentObject() << std::endl;
+					<< response.getContentObject()
+					<< std::endl;
 		_session.acknowledge();
 		sender.close();
 	}
 public:
 	ServerImpl (	const std::string& init_data,
-					const std::string& service_queue)
+					const std::string& service_queue,
+					const CallBack&	service_callback)
 	:	AbstractEndpoint(init_data)
+	,	_callback(service_callback)
 	,	_session(createSession())
 	,	_receiver(_session.createReceiver(service_queue+"; {create: always}"))
 	{}

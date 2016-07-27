@@ -6,6 +6,7 @@
 
 namespace RPConMQ {
 
-	using Message	= std::string;
-	using CallBack	= std::function<Message(const Message&)>;
+	using Response	= std::string;
+	using Request	= std::string;
+	using CallBack	= std::function<Response(const Request&)>;
 }
