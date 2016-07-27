@@ -10,13 +10,16 @@ class ClientImpl
 ,	public AbstractEndpoint
 {
 private:
+	CorrelationCallBack			_create_correlation_id;
 	qpid::messaging::Session	_session;
 	qpid::messaging::Sender		_sender;
 	qpid::messaging::Receiver	_receiver;
 public:
 	ClientImpl (const std::string& init_data,
-				const std::string& service_queue)
+				const std::string& service_queue,
+				const CorrelationCallBack& correlation_callback)
 	:	AbstractEndpoint(init_data)
+	,	_create_correlation_id(correlation_callback)
 	,	_session(createSession())
 	,	_sender(_session.createSender(service_queue))
 	,	_receiver(_session.createReceiver("#"))
@@ -28,7 +31,7 @@ public:
 	virtual Response request (const Request& message)
 	{
 		const auto responseQueue = _receiver.getAddress();
-		const auto id = create_correlation_id();
+		const auto id = _create_correlation_id();
 
 		qpid::messaging::Message request(message);
 		request.setReplyTo(responseQueue);
@@ -44,13 +47,6 @@ public:
 
 		return response.getContentObject();
 	}
-
-private:
-	std::string create_correlation_id ()
-	{
-		return "unique";
-	}
-
 };
 
 }

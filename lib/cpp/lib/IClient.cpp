@@ -10,9 +10,10 @@ IClient::~IClient ()
 {}
 
 Client IClient::create(	const std::string& init_data,
-						const std::string& service_queue)
+						const std::string& service_queue,
+						const CorrelationCallBack& correlation_callback)
 {
-	return Client(new ClientImpl(init_data, service_queue));
+	return Client(new ClientImpl(init_data, service_queue,correlation_callback));
 }
 
 }
