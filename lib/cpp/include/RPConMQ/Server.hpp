@@ -13,7 +13,8 @@ public:
 	virtual ~IServer();
 	virtual void run() = 0;
 
-	static Server create (const std::string& init_data);
+	static Server create (	const std::string& init_data,
+							const std::string& service_queue);
 };
 
 }

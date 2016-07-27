@@ -6,9 +6,10 @@ namespace RPConMQ {
 IClient::~IClient()
 {}
 
-Client IClient::create(const std::string& init_data)
+Client IClient::create(	const std::string& init_data,
+						const std::string& service_queue)
 {
-	return Client(new ClientImpl(init_data,"foo"));
+	return Client(new ClientImpl(init_data, service_queue));
 }
 
 }

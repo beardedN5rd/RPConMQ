@@ -13,24 +13,24 @@ lib qpidcommon : : <name>qpidcommon <search>/usr/local/lib/ : : <include>/usr/lo
 lib qpidmessaging : : <name>qpidmessaging <search>/usr/local/lib/ : : <include>/usr/local/include ;
 lib qpidtypes : : <name>qpidtypes <search>/usr/local/lib/ : : <include>/usr/local/include ;
 	
-#lib rpconmq_client 
-#	:
-#		[ glob ./lib/cpp/lib/*Client*.cpp ]
-#	:
-#		<include>./lib/cpp/include
-#	;
+lib rpconmq_client 
+	:
+		[ glob ./lib/cpp/lib/*Client*.cpp ]
+	:
+		<include>./lib/cpp/include
+	;
 
-#lib rpconmq_server 
-#	:
-#		[ glob ./lib/cpp/lib/*Server*.cpp ]
-#	:
-#		<include>./lib/cpp/include
-#	;
+lib rpconmq_server 
+	:
+		[ glob ./lib/cpp/lib/*Server*.cpp ]
+	:
+		<include>./lib/cpp/include
+	;
 	
 exe TestClient
 	:
 		[ glob ./lib/cpp/example/TestClient.cpp ]
-#		rpconmq_client
+		rpconmq_client
 		qpidclient
 		qpidcommon
 		qpidmessaging
@@ -42,7 +42,7 @@ exe TestClient
 exe TestServer
 	:
 		[ glob ./lib/cpp/example/TestServer.cpp ]
-#		rpconmq_server
+		rpconmq_server
 		qpidclient
 		qpidcommon
 		qpidmessaging

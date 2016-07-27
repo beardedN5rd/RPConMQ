@@ -27,7 +27,7 @@ public:
 
 	virtual Message request (const Message& message)
 	{
-		const auto responseQueue = receiver.getAddress();
+		const auto responseQueue = _receiver.getAddress();
 		const auto id = create_correlation_id();
 
 		qpid::messaging::Message request(message);
@@ -40,7 +40,7 @@ public:
 				<< " -> "
 				<< response.getContentObject()
 				<< std::endl;
-		session.acknowledge(response);
+		_session.acknowledge(const_cast<qpid::messaging::Message&>(response));
 
 		if ( id != response.getCorrelationId())
 			return ""; //id mismatch
