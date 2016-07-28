@@ -5,7 +5,9 @@ namespace RPConMQ {
 
 class ProcessException
 :	public BaseException
-{};
+{
+	using BaseException::BaseException;
+};
 
 
 }

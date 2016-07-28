@@ -1,5 +1,6 @@
 #pragma once
 #include <RPConMQ/Client.hpp>
+#include <RPConMQ/exception.hpp>
 #include "AbstractEndpoint.hpp"
 
 

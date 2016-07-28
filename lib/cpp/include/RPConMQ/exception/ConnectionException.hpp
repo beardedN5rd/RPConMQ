@@ -5,7 +5,9 @@ namespace RPConMQ {
 
 class ConnectionException
 :	public BaseException
-{};
+{
+	using BaseException::BaseException;
+};
 
 
 }
