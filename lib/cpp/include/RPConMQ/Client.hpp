@@ -19,9 +19,11 @@ public:
 	virtual ~IClient ();
 	virtual Response request (const Request& request) = 0;
 
-	static Client create (	const std::string& init_data,
-							const std::string& service_queue,
-							const CorrelationCallBack& correlation_callback = std::bind(IClient::correlation_id));
+	static Client create
+	(	const std::string& init_data,
+		const std::string& service_queue,
+		const CorrelationCallBack& correlation_callback =
+			std::bind(IClient::correlation_id));
 };
 
 }
