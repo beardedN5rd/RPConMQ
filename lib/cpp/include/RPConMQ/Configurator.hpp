@@ -18,19 +18,24 @@
 
 namespace RPConMQ {
 
-class IServer;
-using Server = std::shared_ptr<IServer>;
-
-class IServer
+class Configurator
 {
 public:
-	virtual ~IServer();
-	virtual void run() = 0;
+	Configurator (	const std::string& host = "127.0.0.1",
+			const uint16_t port = 5672);
+	virtual ~Configurator ();
 
-	static Server create
-	(	const std::string& init_data,
-		const std::string& service_queue,
-		const CallBack&	service_callback);
+	const std::string& host() const
+	{
+		return _host;
+	}
+	const std::uint16_t port() const
+	{
+		return _port;
+	}
+protected:
+	std::string	_host;
+	std::uint16_t	_port;
 };
 
 }

@@ -14,23 +14,22 @@
  *
  */
 #pragma once
-#include <RPConMQ/Types.hpp>
+#include <RPConMQ/Client.hpp>
 
 namespace RPConMQ {
 
-class IServer;
-using Server = std::shared_ptr<IServer>;
-
-class IServer
+class IService
 {
 public:
-	virtual ~IServer();
-	virtual void run() = 0;
+	IService ();
+	virtual ~IService ();
 
-	static Server create
+	virtual Client create
 	(	const std::string& init_data,
 		const std::string& service_queue,
-		const CallBack&	service_callback);
+		const CorrelationCallBack& correlation_callback =
+			std::bind(IClient::correlation_id) = 0;
+  );
 };
 
 }
