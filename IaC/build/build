@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function create_qpid_proton {
+   cd /third_party/qpid-proton
+   rm -f build
+   mkdir build
+   cd build
+   cmake ..
+   make all
+   make install
+}
+
+function create_qpid_cpp {
+   cd /third_party/qpid-cpp
+   rm -f build
+   mkdir build
+   cd build
+   cmake ..
+   make test
+   make install
+}
+
+create_qpid_proton
+create_qpid_cpp

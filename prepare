@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pushd IaC/base
+   docker build -t rpconmq/base:latest .
+popd
+
+pushd IaC/build
+   docker build -t rpconmq/build:latest .
+   docker-compose up
+popd

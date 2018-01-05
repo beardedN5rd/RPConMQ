@@ -13,8 +13,10 @@
        - clang
        - g++
        - cmake
+       - swig
        - doxygen
        - pkg-config
+       - valgrind
        - libboost-tools-dev
        - libboost-all-dev
        - libssl-dev

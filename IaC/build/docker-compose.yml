@@ -1,0 +1,9 @@
+version: "2"
+services:
+  node:
+    image: rpconmq/build:latest
+    working_dir: /build_dir
+    volumes:
+      - ../../third_party/:/third_party/
+      - ./:/build_dir/
+    command: "./build"
