@@ -1,8 +1,11 @@
 [submodule "third_party/qpid-cpp"]
 	path = third_party/qpid-cpp
-	url = https://github.com/engineer-legion/qpid-cpp.git
+	url = https://github.com/forkorama-legion/qpid-cpp.git
 	branch = master
 [submodule "third_party/qpid-proton"]
 	path = third_party/qpid-proton
-	url = https://github.com/engineer-legion/qpid-proton.git
+	url = https://github.com/forkorama-legion/qpid-proton.git
 	branch = master
+[submodule "IaC/scripts"]
+	path = IaC/base/scripts
+	url = https://github.com/beardedN5rd/prepare4ansible.git
