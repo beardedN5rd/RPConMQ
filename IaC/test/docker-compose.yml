@@ -1,0 +1,13 @@
+version: '2'
+services:
+  broker:
+    image: rabbitmq:3-management
+    ports:
+      - 8080:15672 #monitoring interface
+      - 5672:15672 #rabbitmq broker port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+#  server:
+#    build:
+#  client:
