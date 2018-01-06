@@ -9,6 +9,6 @@
 [submodule "IaC/scripts"]
 	path = IaC/scripts
 	url = https://github.com/beardedN5rd/prepare4ansible.git
-[submodule "IaC/ansible_build/roles/ansible-role-docker"]
-	path = IaC/ansible_build/roles/docker
+[submodule "IaC/build/roles/ansible-role-docker"]
+	path = IaC/build/roles/docker
 	url = https://github.com/forkorama-legion/ansible-role-docker.git
