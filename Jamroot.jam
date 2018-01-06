@@ -27,13 +27,13 @@ lib rpconmq_server
 		<include>./lib/cpp/include
 	;
 
-lib rpconmq_py_client
-        :
-                [ glob ./lib/cpp/lib/python/*Client*.cpp ]
-        :
-                <include>./lib/cpp/include
-                <include>/usr/include/python2.7
-        ;
+#lib rpconmq_py_client
+#        :
+#                [ glob ./lib/cpp/lib/python/*Client*.cpp ]
+#        :
+#                <include>./lib/cpp/include
+#                <include>/usr/include/python2.7
+#        ;
 
 	
 exe TestClient
