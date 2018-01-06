@@ -1,10 +1,14 @@
 #!/bin/bash
 
-pushd IaC/base
-   docker build -t rpconmq/base:latest .
-popd
 
-pushd IaC/build
-   docker build -t rpconmq/build:latest .
-   docker-compose up
-popd
+   docker build -f Dockerfile_base -t rpconmq/base:latest .
+
+  docker build -f Dockerfile_prepare\
+               -t rpconmq/prepare:latest\
+               --build-arg external_uid=${UID} .
+  docker run -it\
+             -u ${UID}\
+             -v /var/run/docker.sock:/var/run/docker.sock\
+             -v `pwd`/third_party/:/third_party/\
+             -v `pwd`:/rpconmq/\
+             -w /rpconmq/  rpconmq/prepare:latest ./IaC/build_prepare

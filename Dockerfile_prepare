@@ -1,0 +1,13 @@
+FROM rpconmq/base:latest
+
+ARG external_uid
+ADD IaC/ansible_prepare /ansible_prepare
+WORKDIR /ansible_prepare
+RUN ansible-playbook -i "localhost", -c local playbook.yml
+
+ADD IaC/ansible_build /ansible_build
+WORKDIR /ansible_build
+RUN ansible-playbook -i "localhost", -c local playbook.yml
+
+RUN useradd -u ${external_uid} foobar
+RUN usermod -aG docker foobar

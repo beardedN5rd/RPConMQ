@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    - docker
+
+  vars:
+    docker_daemon_dns: ["172.21.33.161"]

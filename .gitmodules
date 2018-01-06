@@ -7,5 +7,8 @@
 	url = https://github.com/forkorama-legion/qpid-proton.git
 	branch = master
 [submodule "IaC/scripts"]
-	path = IaC/base/scripts
+	path = IaC/scripts
 	url = https://github.com/beardedN5rd/prepare4ansible.git
+[submodule "IaC/ansible_build/roles/ansible-role-docker"]
+	path = IaC/ansible_build/roles/docker
+	url = https://github.com/forkorama-legion/ansible-role-docker.git
