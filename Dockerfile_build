@@ -1,6 +1,9 @@
 FROM rpconmq/prepare:latest
 
 ADD third_party /third_party
-
 RUN cd /third_party/qpid-proton/build && make install
 RUN cd /third_party/qpid-cpp/build && make install
+
+ADD IaC/build /ansible_build
+WORKDIR /ansible_build
+RUN ansible-playbook -i "localhost", -c local playbook.yml

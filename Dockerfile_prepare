@@ -5,9 +5,5 @@ ADD IaC/prepare /ansible_prepare
 WORKDIR /ansible_prepare
 RUN ansible-playbook -i "localhost", -c local playbook.yml
 
-ADD IaC/build /ansible_build
-WORKDIR /ansible_build
-RUN ansible-playbook -i "localhost", -c local playbook.yml
-
 RUN useradd -u ${external_uid} foobar
 RUN usermod -aG docker foobar

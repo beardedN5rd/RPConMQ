@@ -10,5 +10,5 @@
 	path = IaC/scripts
 	url = https://github.com/beardedN5rd/prepare4ansible.git
 [submodule "IaC/build/roles/ansible-role-docker"]
-	path = IaC/build/roles/docker
+	path = IaC/prepare/roles/docker
 	url = https://github.com/forkorama-legion/ansible-role-docker.git

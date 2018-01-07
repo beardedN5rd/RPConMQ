@@ -3,25 +3,35 @@
   become: yes
   become_method: sudo
 
-  tasks:
-   - name: update cache
-     apt: update_cache=yes
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
 
+  tasks:
    - name: Install list of packages
      apt: name={{item}} state=installed
      with_items:
-       - clang
        - g++
        - cmake
+
+       - libboost-all-dev
+       - libuuid1
+       - uuid-dev
+       - pkg-config
+
        - swig
        - doxygen
-       - pkg-config
-       - valgrind
-       - libboost-tools-dev
-       - libboost-all-dev
+
+       - libxerces-c-dev
+
        - libssl-dev
        - libsasl2-dev
-       - libuuid1
-       - libxerces-c-dev
+
        - ruby-dev
-       - uuid-dev
+
+  roles:
+    - docker
+
+  vars:
+    docker_daemon_dns: ["172.21.33.161"]

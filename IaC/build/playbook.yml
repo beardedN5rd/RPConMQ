@@ -8,8 +8,15 @@
       apt: update_cache=yes cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
-  roles:
-    - docker
+  tasks:
+   - name: Install list of packages
+     apt: name={{item}} state=installed
+     with_items:
+       - clang
+       - g++
 
-  vars:
-    docker_daemon_dns: ["172.21.33.161"]
+       - libboost-all-dev
+       - libuuid1
+       - uuid-dev
+       - valgrind
+       - libboost-tools-dev
