@@ -1,11 +1,16 @@
 #!/bin/bash
 
+# create the base image
 docker build -f Dockerfile_base -t rpconmq/base:latest .
 
+# create the prepare image, the prepare container is used to build
+# the third party dependencies
 docker build -f Dockerfile_prepare\
              -t rpconmq/prepare:latest\
              --build-arg external_uid=${UID} .
 
+# create the build image from within the prepare container,
+# third party dependencies will be installed into the image
 docker run -it\
            -u ${UID}\
            -v /var/run/docker.sock:/var/run/docker.sock\
