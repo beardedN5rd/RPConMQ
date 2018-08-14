@@ -1,0 +1,5 @@
+#!/bin/bash
+
+  echo "create build image"
+  cd /rpconmq
+  docker build -f Dockerfile_build -t rpconmq/build:latest .

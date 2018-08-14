@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+   echo "create qpid proton"
+   cd /third_party/qpid-proton
+   rm -f build
+   mkdir build
+   cd build
+   cmake ..
+   make all
+   make install

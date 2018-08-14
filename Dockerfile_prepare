@@ -1,9 +1,13 @@
 FROM rpconmq/base:latest
 
 ARG external_uid
-ADD IaC/prepare /ansible_prepare
-WORKDIR /ansible_prepare
+ADD IaC/prepare /prepare
+WORKDIR /prepare
 RUN ansible-playbook -i "localhost", -c local playbook.yml
 
 RUN useradd -u ${external_uid} foobar
 RUN usermod -aG docker foobar
+
+COPY third_party /third_party
+RUN chown foobar: /third_party
+RUN /prepare/build_qpid_proton && /prepare/build_qpid_cpp

@@ -1,14 +1,13 @@
 #!/bin/bash
 
+docker build -f Dockerfile_base -t rpconmq/base:latest .
 
-   docker build -f Dockerfile_base -t rpconmq/base:latest .
+docker build -f Dockerfile_prepare\
+             -t rpconmq/prepare:latest\
+             --build-arg external_uid=${UID} .
 
-  docker build -f Dockerfile_prepare\
-               -t rpconmq/prepare:latest\
-               --build-arg external_uid=${UID} .
-  docker run -it\
-             -u ${UID}\
-             -v /var/run/docker.sock:/var/run/docker.sock\
-             -v `pwd`/third_party/:/third_party/\
-             -v `pwd`:/rpconmq/\
-             -w /rpconmq/  rpconmq/prepare:latest ./IaC/build_prepare
+docker run -it\
+           -u ${UID}\
+           -v /var/run/docker.sock:/var/run/docker.sock\
+           -v `pwd`:/rpconmq/\
+           -w /rpconmq/  rpconmq/prepare:latest ./IaC/prepare/create_image
