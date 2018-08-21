@@ -5,37 +5,30 @@ project RPConMQcpp
 		<cxxflags>-fPIC
 		<include>./lib/cpp/include
 		<include>./third_party/amqpcpp/include
-		<library-path>bin	
+		<library-path>bin
 	;
-	
+
 lib qpidclient : : <name>qpidclient <search>/usr/local/lib/ : : <include>/usr/local/include ;
 lib qpidcommon : : <name>qpidcommon <search>/usr/local/lib/ : : <include>/usr/local/include ;
 lib qpidmessaging : : <name>qpidmessaging <search>/usr/local/lib/ : : <include>/usr/local/include ;
 lib qpidtypes : : <name>qpidtypes <search>/usr/local/lib/ : : <include>/usr/local/include ;
-	
-lib rpconmq_client 
+
+lib rpconmq_client
 	:
 		[ glob ./lib/cpp/lib/*Client*.cpp ]
 	:
 		<include>./lib/cpp/include
 	;
 
-lib rpconmq_server 
+lib rpconmq_server
 	:
 		[ glob ./lib/cpp/lib/*Server*.cpp ]
 	:
 		<include>./lib/cpp/include
 	;
 
-#lib rpconmq_py_client
-#        :
-#                [ glob ./lib/cpp/lib/python/*Client*.cpp ]
-#        :
-#                <include>./lib/cpp/include
-#                <include>/usr/include/python2.7
-#        ;
 
-	
+
 exe TestClient
 	:
 		[ glob ./lib/cpp/example/TestClient.cpp ]
@@ -47,7 +40,7 @@ exe TestClient
 	:
 		<include>./lib/cpp/include
 	;
-		
+
 exe TestServer
 	:
 		[ glob ./lib/cpp/example/TestServer.cpp ]
