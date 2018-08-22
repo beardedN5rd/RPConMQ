@@ -21,20 +21,27 @@ namespace RPConMQ {
 class IClient;
 using Client = std::shared_ptr<IClient>;
 
+/** brief IClient - Client Interface */
 class IClient
 {
-private:
-	static std::string correlation_id ()
-	{
-		return "unique";
-	}
 protected:
 	IClient ();
 public:
 	virtual ~IClient ();
+		/** brief request - send a request to the service
+		 * param Request& the message to send
+		 * return Response
+		 */
 	virtual Response request (const Request& request) = 0;
 
-	static Client create
+	/** brief createInstance - Factory
+ 	 * details
+	 * param init_data& atm a amqp specific string
+	 * param service_queue& the identifier of the service queue
+	 * param CorrelationCallBack& the correlation function that should be used
+   * return Client instance
+	 */
+	static Client createInstance
 	(	const std::string& init_data,
 		const std::string& service_queue,
 	  const CorrelationCallBack& correlation_callback);

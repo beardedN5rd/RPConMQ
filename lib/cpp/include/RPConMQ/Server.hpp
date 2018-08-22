@@ -21,13 +21,23 @@ namespace RPConMQ {
 class IServer;
 using Server = std::shared_ptr<IServer>;
 
+/** brief IServer - Server Interface */
 class IServer
 {
 public:
 	virtual ~IServer();
+
+	/** brief run - start the event loop */
 	virtual void run() = 0;
 
-	static Server create
+	/** brief createInstance - Factory
+ 	 * details
+	 * param init_data& atm a amqp specific string
+	 * param service_queue& the identifier of the service queue
+	 * param CallBack& the service function to expose
+   * return Server instance
+	 */
+	static Server createInstance
 	(	const std::string& init_data,
 		const std::string& service_queue,
 		const CallBack&	service_callback);

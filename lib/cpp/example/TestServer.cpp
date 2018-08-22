@@ -17,7 +17,7 @@ int main ()
 	 try
 	 {
 		 auto server =
-				 IServer::create (	"amqp:tcp:127.0.0.1:5672",
+				 IServer::createInstance (	"amqp:tcp:127.0.0.1:5672",
 						 	 	 	"foo",
 									std::bind(&foo, std::placeholders::_1));
 		 server->run();

@@ -6,7 +6,7 @@ namespace RPConMQ {
 IServer::~IServer()
 {}
 
-Server IServer::create
+Server IServer::createInstance
 (	const std::string& init_data,
 	const std::string& service_queue,
 	const CallBack&	service_callback

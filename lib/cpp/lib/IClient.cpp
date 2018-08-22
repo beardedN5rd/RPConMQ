@@ -9,7 +9,7 @@ IClient::IClient ()
 IClient::~IClient ()
 {}
 
-Client IClient::create
+Client IClient::createInstance
 (	const std::string& init_data,
 	const std::string& service_queue,
   const CorrelationCallBack& correlation_callback)

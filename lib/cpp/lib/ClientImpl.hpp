@@ -17,8 +17,8 @@ private:
 	qpid::messaging::Receiver	_receiver;
 public:
 	ClientImpl (const std::string& init_data,
-				const std::string& service_queue,
-				const CorrelationCallBack& correlation_callback)
+							const std::string& service_queue,
+							const CorrelationCallBack& correlation_callback)
 	:	AbstractEndpoint(init_data)
 	,	_create_correlation_id(correlation_callback)
 	,	_session(createSession())

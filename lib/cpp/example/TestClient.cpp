@@ -10,7 +10,7 @@ std::string foo()
 int main ()
 {
 	auto client =
-			IClient::create (	"amqp:tcp:127.0.0.1:5672",
+			IClient::createInstance (	"amqp:tcp:127.0.0.1:5672",
 								"foo",
 								std::bind(&foo));
 	std::string s[] = {

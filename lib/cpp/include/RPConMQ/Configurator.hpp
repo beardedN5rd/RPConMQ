@@ -21,14 +21,17 @@ namespace RPConMQ {
 class Configurator
 {
 public:
-	Configurator (	const std::string& host = "127.0.0.1",
-			const uint16_t port = 5672);
+	Configurator
+	(	const std::string& host = "127.0.0.1",
+		const uint16_t port = 5672);
+
 	virtual ~Configurator ();
 
 	const std::string& host() const
 	{
 		return _host;
 	}
+	
 	const std::uint16_t port() const
 	{
 		return _port;
