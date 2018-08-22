@@ -16,6 +16,7 @@ lib qpidtypes : : <name>qpidtypes <search>/usr/local/lib/ : : <include>/usr/loca
 lib rpconmq_client
 	:
 		[ glob ./lib/cpp/lib/*Client*.cpp ]
+		[ glob ./lib/cpp/lib/Configurator.cpp ]
 	:
 		<include>./lib/cpp/include
 	;
@@ -23,6 +24,7 @@ lib rpconmq_client
 lib rpconmq_server
 	:
 		[ glob ./lib/cpp/lib/*Server*.cpp ]
+		[ glob ./lib/cpp/lib/Configurator.cpp ]
 	:
 		<include>./lib/cpp/include
 	;

@@ -16,10 +16,10 @@ private:
 	qpid::messaging::Sender		_sender;
 	qpid::messaging::Receiver	_receiver;
 public:
-	ClientImpl (const std::string& init_data,
+	ClientImpl (const Configurator& configuration,
 							const std::string& service_queue,
 							const CorrelationCallBack& correlation_callback)
-	:	AbstractEndpoint(init_data)
+	:	AbstractEndpoint(configuration)
 	,	_create_correlation_id(correlation_callback)
 	,	_session(createSession())
 	,	_sender(_session.createSender(service_queue))

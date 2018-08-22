@@ -61,10 +61,10 @@ private:
 		sender.close();
 	}
 public:
-	ServerImpl (	const std::string& init_data,
-					const std::string& service_queue,
-					const CallBack&	service_callback)
-	:	AbstractEndpoint(init_data)
+	ServerImpl (	const Configurator& configuration,
+								const std::string& service_queue,
+								const CallBack&	service_callback)
+	:	AbstractEndpoint(configuration)
 	,	_callback(service_callback)
 	,	_session(createSession())
 	,	_receiver(_session.createReceiver(service_queue+"; {create: always}"))

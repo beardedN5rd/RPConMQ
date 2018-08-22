@@ -7,12 +7,12 @@ IServer::~IServer()
 {}
 
 Server IServer::createInstance
-(	const std::string& init_data,
+(	const Configurator& configuration,
 	const std::string& service_queue,
 	const CallBack&	service_callback
 )
 {
-	return Server(new ServerImpl(	init_data,
+	return Server(new ServerImpl(	configuration,
 									service_queue,
 									service_callback));
 }

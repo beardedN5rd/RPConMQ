@@ -14,6 +14,7 @@
  *
  */
 #pragma once
+#include <RPConMQ/Configurator.hpp>
 #include <RPConMQ/Types.hpp>
 
 namespace RPConMQ {
@@ -36,13 +37,13 @@ public:
 
 	/** brief createInstance - Factory
  	 * details
-	 * param init_data& atm a amqp specific string
+	 * param Configurator& network configuration
 	 * param service_queue& the identifier of the service queue
 	 * param CorrelationCallBack& the correlation function that should be used
    * return Client instance
 	 */
 	static Client createInstance
-	(	const std::string& init_data,
+	(	const Configurator& configuration,
 		const std::string& service_queue,
 	  const CorrelationCallBack& correlation_callback);
 };

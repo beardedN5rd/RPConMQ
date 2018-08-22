@@ -10,10 +10,10 @@ std::string foo()
 int main ()
 {
 	auto client =
-			IClient::createInstance (	"amqp:tcp:127.0.0.1:5672",
-								"foo",
-								std::bind(&foo));
-	std::string s[] = {
+			IClient::createInstance (	Configurator(),
+																"foo",
+																std::bind(&foo));
+	const std::string s[] = {
 	            "Twas brillig, and the slithy toves",
 	            "Did gire and gymble in the wabe.",
 	            "All mimsy were the borogroves,",
